@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <Container maxW="container.lg">
-      <BookList initialBooks={books} />
+      <BookList books={books} />
     </Container>
   );
 }

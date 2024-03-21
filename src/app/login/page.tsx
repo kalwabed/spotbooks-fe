@@ -46,7 +46,7 @@ export default function LoginPage() {
       <form onSubmit={handleOnSubmit}>
         <FormControl>
           <FormLabel>Username</FormLabel>
-          <Input ref={username} name="username" />
+          <Input autoFocus ref={username} name="username" />
         </FormControl>
 
         <Flex mt={8}>

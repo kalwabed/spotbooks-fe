@@ -11,3 +11,10 @@ export interface Member {
   username: string
   point: number
 }
+
+export interface Order {
+  id: string
+  qty: number
+  book_id: string
+  member_id: string
+}

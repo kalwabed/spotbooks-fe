@@ -1,18 +1,16 @@
 'use client'
 
 import { tokenAtom } from "@/store/auth";
-import { fetchBooks } from "@/utils/fetcher";
 import { Book } from "@/utils/types";
-import { Button, Text, ButtonGroup, Card, CardBody, CardFooter, Container, Divider, Heading, Image, Stack, Flex, useToast } from "@chakra-ui/react";
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { Button, Text, Card, CardBody, CardFooter, Container, Divider, Heading, Image, Stack, Flex, useToast } from "@chakra-ui/react";
+import { useQueryClient } from '@tanstack/react-query'
 import { useAtomValue } from "jotai";
 import ky from "ky";
 
-export default function BookList({ initialBooks }: { initialBooks?: Book[] }) {
+export default function BookList({ books }: { books?: Book[] }) {
   const memberId = useAtomValue(tokenAtom)
   const toast = useToast()
   const qClient = useQueryClient()
-  const { data } = useQuery<Book[]>({ queryKey: ['books'], queryFn: fetchBooks, initialData: initialBooks ?? [] })
 
   const orderBook = async (bookId: string) => {
     if (!memberId) {
@@ -34,12 +32,12 @@ export default function BookList({ initialBooks }: { initialBooks?: Book[] }) {
       title: 'Order proceed',
       status: 'success'
     })
-    qClient.invalidateQueries({ queryKey: ['members'] })
+    qClient.invalidateQueries()
   }
 
   return (
     <Flex wrap="wrap" gap={8}>
-      {data?.map(book => (
+      {books?.map(book => (
         <Card key={book.id} maxW='sm'>
           <CardBody>
             <Image
@@ -63,11 +61,9 @@ export default function BookList({ initialBooks }: { initialBooks?: Book[] }) {
           </CardBody>
           <Divider />
           <CardFooter>
-            <ButtonGroup spacing='2'>
-              <Button onClick={() => orderBook(book.id)} variant='solid' colorScheme='blue'>
-                Buy now
-              </Button>
-            </ButtonGroup>
+            <Button onClick={() => orderBook(book.id)} variant='solid' colorScheme='blue'>
+              Buy now
+            </Button>
           </CardFooter>
         </Card>
 
