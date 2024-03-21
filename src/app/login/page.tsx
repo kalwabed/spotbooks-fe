@@ -2,14 +2,13 @@
 
 import { tokenAtom } from "@/store/auth";
 import { kayi } from "@/utils/fetcher";
-import { Button, Container, Flex, FormControl, FormLabel, Heading, Input, useStatStyles, useToast } from "@chakra-ui/react";
+import { Button, Container, Flex, FormControl, FormLabel, Heading, Input, useToast } from "@chakra-ui/react";
 import { useSetAtom } from "jotai";
-import ky from 'ky'
 import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function LoginPage() {
-  const username = React.useRef('')
+  const username = React.useRef<any>('')
   const toast = useToast()
   const setToken = useSetAtom(tokenAtom)
   const router = useRouter()
