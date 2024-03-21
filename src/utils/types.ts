@@ -5,3 +5,9 @@ export interface Book {
   point: number
   tags: string[]
 }
+
+export interface Member {
+  id: string
+  username: string
+  point: number
+}

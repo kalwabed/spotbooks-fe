@@ -1,5 +1,15 @@
+import ky from "ky"
+import { Book, Member } from "./types"
+
 export const fetchBooks = async () => {
-  const fetchedBooks = await fetch('http://localhost:8080/books')
-  const books = await fetchedBooks.json()
+  const books = await ky.get('http://localhost:8080/books').json<Book[]>()
   return books
+}
+
+export const getMemberById = async (id: string) => {
+  if (!id) {
+    return {}
+  }
+  const member = await ky.get(`http://localhost:8080/members/${id}`).json<Member>()
+  return member
 }

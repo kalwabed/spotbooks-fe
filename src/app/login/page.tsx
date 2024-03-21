@@ -4,12 +4,14 @@ import { tokenAtom } from "@/store/auth";
 import { Button, Container, Flex, FormControl, FormLabel, Heading, Input, useStatStyles, useToast } from "@chakra-ui/react";
 import { useSetAtom } from "jotai";
 import ky from 'ky'
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function LoginPage() {
   const username = React.useRef('')
   const toast = useToast()
   const setToken = useSetAtom(tokenAtom)
+  const router = useRouter()
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
@@ -27,6 +29,7 @@ export default function LoginPage() {
         status: 'success'
       })
       setToken(user.id)
+      router.replace('/')
     } catch (error) {
       console.error(error)
       toast({
