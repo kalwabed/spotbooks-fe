@@ -3,7 +3,7 @@
 import { tokenAtom } from "@/store/auth";
 import { kayi } from "@/utils/fetcher";
 import { Book } from "@/utils/types";
-import { Button, Text, Card, CardBody, CardFooter, Container, Divider, Heading, Image, Stack, Flex, useToast } from "@chakra-ui/react";
+import { Button, Text, Card, CardBody, CardFooter, Container, Divider, Heading, Image, Stack, Flex, useToast, Grid } from "@chakra-ui/react";
 import { useQueryClient } from '@tanstack/react-query'
 import { useAtomValue } from "jotai";
 
@@ -36,7 +36,7 @@ export default function BookList({ books }: { books?: Book[] }) {
   }
 
   return (
-    <Flex wrap="wrap" gap={8}>
+    <Grid gridTemplateColumns={["repeat(1, 1fr)", "repeat(4, 1fr)"]} gap={8}>
       {books?.map(book => (
         <Card key={book.id} maxW='sm'>
           <CardBody>
@@ -68,6 +68,6 @@ export default function BookList({ books }: { books?: Book[] }) {
         </Card>
 
       ))}
-    </Flex>
+    </Grid>
   );
 }
