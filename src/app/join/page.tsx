@@ -17,7 +17,7 @@ export default function LoginPage() {
     e.preventDefault()
 
     try {
-      const user = await kayi.post('members/login', {
+      const user = await kayi.post('members/join', {
         json: {
           username: username.current.value
         }
@@ -42,7 +42,7 @@ export default function LoginPage() {
 
   return (
     <Container maxW='lg'>
-      <Heading fontSize="4xl" mb={4} textAlign='center'>Login</Heading>
+      <Heading fontSize="4xl" mb={4} textAlign='center'>Join</Heading>
       <form onSubmit={handleOnSubmit}>
         <FormControl>
           <FormLabel>Username</FormLabel>
@@ -50,7 +50,7 @@ export default function LoginPage() {
         </FormControl>
 
         <Flex mt={8}>
-          <Button type="submit" colorScheme="blue" width='full'>Sign In</Button>
+          <Button type="submit" colorScheme="blue" width='full'>Join now</Button>
         </Flex>
       </form>
     </Container>
