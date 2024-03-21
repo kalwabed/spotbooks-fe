@@ -1,11 +1,11 @@
 'use client'
 
 import { tokenAtom } from "@/store/auth";
+import { kayi } from "@/utils/fetcher";
 import { Book } from "@/utils/types";
 import { Button, Text, Card, CardBody, CardFooter, Container, Divider, Heading, Image, Stack, Flex, useToast } from "@chakra-ui/react";
 import { useQueryClient } from '@tanstack/react-query'
 import { useAtomValue } from "jotai";
-import ky from "ky";
 
 export default function BookList({ books }: { books?: Book[] }) {
   const memberId = useAtomValue(tokenAtom)
@@ -21,7 +21,7 @@ export default function BookList({ books }: { books?: Book[] }) {
       })
       return
     }
-    await ky.post('http://localhost:8080/orders', {
+    await kayi.post('orders', {
       json: {
         qty: 1,
         bookId,

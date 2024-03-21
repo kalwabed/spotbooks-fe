@@ -42,7 +42,7 @@ export default function PageHeader() {
             </Menu>
           </Flex>
         ) : (
-          <Button onClick={() => router.push('/login')}>Login lur</Button>
+          <Button onClick={() => router.push('/login')}>Sign in</Button>
         )}
       </Flex>
     </Container>

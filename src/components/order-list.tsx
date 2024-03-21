@@ -1,16 +1,16 @@
 'use client'
 
+import { kayi } from "@/utils/fetcher";
 import { Book, Order } from "@/utils/types";
 import { Button, Text, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Flex, useToast, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
 import { useQueryClient } from '@tanstack/react-query'
-import ky from "ky";
 
 export default function OrderList({ orders }: { orders?: (Order & { book: Book })[] }) {
   const toast = useToast()
   const qClient = useQueryClient()
 
   const refundBook = async (orderId: string) => {
-    await ky.delete(`http://localhost:8080/orders/${orderId}`)
+    await kayi.delete(`orders/${orderId}`)
     toast({
       title: 'Order refunded',
       status: 'success'

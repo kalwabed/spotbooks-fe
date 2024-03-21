@@ -1,6 +1,7 @@
 'use client'
 
 import { tokenAtom } from "@/store/auth";
+import { kayi } from "@/utils/fetcher";
 import { Button, Container, Flex, FormControl, FormLabel, Heading, Input, useStatStyles, useToast } from "@chakra-ui/react";
 import { useSetAtom } from "jotai";
 import ky from 'ky'
@@ -17,7 +18,7 @@ export default function LoginPage() {
     e.preventDefault()
 
     try {
-      const user = await ky.post('http://localhost:8080/members/login', {
+      const user = await kayi.post('members/login', {
         json: {
           username: username.current.value
         }
